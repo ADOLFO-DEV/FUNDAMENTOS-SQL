@@ -49,4 +49,59 @@ ORDER BY ordinal_position;
 
 ALTER TABLE empleados_demo 
 ADD CONSTRAINT email_unico UNIQUE (email);
---- seguir de aqui 
+-- Verificar resultado
+
+SELECT column_name, data_type, column_default
+FROM information_schema.columns
+WHERE table_name = 'empleados_demo'
+ORDER BY ordinal_position;
+-- Eliminar el Add CONSTRAINT que pusimos 
+
+
+ALTER TABLE empleados_demo
+DROP CONSTRAINT email_unico; 
+
+-- Verificar resultado
+
+SELECT column_name, data_type, column_default
+FROM information_schema.columns
+WHERE table_name = 'empleados_demo'
+ORDER BY ordinal_position;
+
+--DROP COLUMN : eliminar una columana de la tabla en este caso activo 
+
+SELECT activo FROM empleados_demo; -- hacemos un check antes de borrar 
+
+ALTER TABLE empleados_demo
+DROP COLUMN activo; --- esto es irreversible 
+
+
+-- Verificar resultado drop column 
+
+SELECT column_name, data_type, column_default
+FROM information_schema.columns
+WHERE table_name = 'empleados_demo'
+ORDER BY ordinal_position;
+
+-- cambios de nombre con alter a una tabla 
+
+ALTER TABLE empleados_demo
+RENAME to empleados_v2;
+
+
+SELECT column_name, data_type, column_default
+FROM information_schema.columns
+WHERE table_name = 'empleados_v2'
+ORDER BY ordinal_position;
+
+-- tres cambios extra de la activdad de platzi 
+
+-- un add 
+ALTER TABLE empleados_v2
+ADD COLUMN distrito VARCHAR(120) NOT NULL DEFAULT 'OAT';
+
+SELECT column_name, data_type, column_default
+FROM information_schema.columns
+WHERE table_name = 'empleados_v2'
+ORDER BY ordinal_position;
+-- 
