@@ -89,7 +89,8 @@ WHERE telefono IS NULL;
 -- AND / OR: combinar condiciones
 SELECT nombre, precio, stock
 FROM productos
-WHERE precio > 50 AND stock > 0;
+WHERE precio > 50 AND stock > 0
+WHERE precio > 20 or 50;
 
 SELECT nombre, codigo
 FROM paises
