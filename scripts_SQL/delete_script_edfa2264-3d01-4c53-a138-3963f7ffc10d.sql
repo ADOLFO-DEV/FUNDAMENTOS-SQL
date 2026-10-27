@@ -43,7 +43,7 @@ INSERT INTO detalle_pedidos (detalle_id, pedido_id, cantidad) VALUES
 
 -- ===== DELETE FÍSICO =====
 
--- DELETE básico (siempre con WHERE)
+-- DELETE básico (siempre con WHERE Porque si no puedes borrar toda la tabla )
 DELETE FROM clientes
 WHERE cliente_id = 99;
 
@@ -71,6 +71,8 @@ WHERE pedido_id IN (
 UPDATE clientes
 SET activo = FALSE
 WHERE cliente_id = 5;
+
+SELECT * FROM clientes;
 
 -- Consultar solo clientes activos (filtro estándar con borrado lógico)
 SELECT nombre, email, activo
@@ -106,8 +108,30 @@ BORRADO LÓGICO (activo = FALSE):
   ✗ Todos los SELECT necesitan WHERE activo = TRUE
   → Solución: usar vistas (Curso 2)
 */
+--- RETO 
 
+INSERT INTO Clientes (cliente_id,nombre, email, activo) VALUES (
+  6, 'Juan', 'juan_Esquivel@homedepot.com.mx', TRUE
+),(
+  7, 'Karen', 'Kare_nuñez@homdepot.com.mx', TRUE
+),
+(
+  8, 'Mariana', 'Mariana_Carrillo@homedepot.com.mx', TRUE
+)
+RETURNING cliente_id, nombre;
+
+-- Desactivacion de user 
+
+UPDATE Clientes
+Set activo = FALSE 
+WHERE cliente_id IN (6,7,8)
+RETURNING cliente_id, nombre, email, activo ; 
+
+
+
+
+--CREA NUEVOS Clientes directamente desde la base y desactivalos
 -- Limpieza
-DROP TABLE IF EXISTS detalle_pedidos;
-DROP TABLE IF EXISTS pedidos;
-DROP TABLE IF EXISTS clientes;
+--DROP TABLE IF EXISTS detalle_pedidos;
+--DROP TABLE IF EXISTS pedidos;
+--DROP TABLE IF EXISTS clientes;
