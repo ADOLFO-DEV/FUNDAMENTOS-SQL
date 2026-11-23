@@ -75,3 +75,43 @@ DROP TABLE IF EXISTS clientes;
 DROP TABLE IF EXISTS tipos_cliente;
 DROP TABLE IF EXISTS categorias;
 DROP TABLE IF EXISTS paises;
+---------
+
+-- ============================================================
+-- C21 · Funciones de texto, fecha y número
+-- Curso: SQL con PostgreSQL — TiendaLatam
+-- ============================================================
+
+-- ===== FUNCIONES DE TEXTO =====
+
+-- UPPER / LOWER / TRIM
+
+
+-- LENGTH (equivale a LEN de SQL Server)
+
+SELECT LENGTH ('Juan') AS Largo_nombre; 
+
+CREATE TABLE clientes (
+  cliente_id      INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  nombre          TEXT        NOT NULL,
+  apellido        TEXT NOT NULL 
+);
+
+INSERT INTO clientes (nombre, apellido) VALUES 
+('Juan', 'Esquive'),
+('Poncho', 'De Anda'),
+('Karen', 'Nuñez'),
+('PEDRO MANUEL RICARDO', 'CANO SEGOVIA'); 
+
+SELECT * FROM clientes; 
+
+SELECT nombre || ' ' || apellido AS "NOMBRE COMPLETO"
+FROM clientes;
+
+SELECT SUBSTRING ('GRAND THIEF AUTO VI' FROM 1 FOR 11) AS PARTE;
+SELECT LEFT('GRAND THIEF AUTO VI' ,5) AS CACHITO_IZQ;
+SELECT RIGHT('GRAND THIEF AUTO VI' ,7) AS CACHITO_DER; 
+
+
+-- este fue mi aporte 
+
